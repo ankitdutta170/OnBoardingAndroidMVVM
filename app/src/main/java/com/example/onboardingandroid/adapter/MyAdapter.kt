@@ -3,24 +3,22 @@ package com.example.onboardingandroid.adapter
 
 
 import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.graphics.toColor
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onboardingandroid.R
+import com.example.onboardingandroid.ShowProfileActivity
 
 import com.example.onboardingandroid.models.UserItem
 
 
 import kotlinx.android.synthetic.main.card_item.view.*
-import org.w3c.dom.Text
 
 class MyAdapter(val context: Context, private val itemList:List<UserItem>):RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
@@ -55,12 +53,32 @@ class MyAdapter(val context: Context, private val itemList:List<UserItem>):Recyc
         holder.age.text = list.age.toString()
         holder.ph_no.text = list.ph_no.toString()
 
+        holder.itemView.setOnClickListener {
+            val name = list.name
+            val age = list.age.toString()
+            val ph_no = list.ph_no.toString()
+            val email = list.email.toString()
+
+            navigateToShowProfileActivity(email,name,age,ph_no)
+
+
+        }
+
         // val view = R.id.circle
         //var color = Color.parseColor("AE6118")
 
 
 
 
+    }
+
+    private fun navigateToShowProfileActivity(email:String,name: String, age: String, phNo: String) {
+        val intent = Intent(context, ShowProfileActivity::class.java)
+        intent.putExtra("name",name)
+        intent.putExtra("age",age)
+        intent.putExtra("phNo",phNo)
+        intent.putExtra("email",email)
+        startActivity(context,intent,null)
     }
 
     override fun getItemCount(): Int {

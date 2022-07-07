@@ -14,7 +14,7 @@ import com.example.onboardingandroid.apis.RetrofitHelper
 import com.example.onboardingandroid.apis.UserService
 import com.example.onboardingandroid.db.UserDatabase
 import com.example.onboardingandroid.models.UserItem
-import com.example.onboardingandroid.repository.UserRepository
+import com.example.onboardingandroid.repository.DefaultUserRepository
 import com.example.onboardingandroid.viewmodel.userViewModel
 import com.example.onboardingandroid.viewmodel.userViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
     private fun viewModelInitializer() {
         val service = RetrofitHelper.getInstance().create(UserService::class.java)
         val db = UserDatabase.getDatabase(this)
-        var repo = UserRepository(service,db,this)
-        vm = ViewModelProvider(this, userViewModelFactory(repo)).get(userViewModel::class.java)
+        var repo = DefaultUserRepository(service,db,this)
+        vm = ViewModelProvider(this, userViewModelFactory(repo)).get(   userViewModel::class.java)
 
         repo.getUserLiveDataForInsert().observe(this, Observer<UserItem?>{
             if(it == null){
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
     private fun isValidPhone(phone:String):Boolean{
-        if(!Pattern.matches("^[0-9]{10,13}$", phone)) {
+        if(!Pattern.matches("^[0-9]$", phone)) {
             return phone.length > 6 && phone.length <= 13;
         }
         return false

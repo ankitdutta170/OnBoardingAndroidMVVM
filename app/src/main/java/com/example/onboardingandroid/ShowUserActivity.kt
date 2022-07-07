@@ -11,6 +11,7 @@ import com.example.onboardingandroid.adapter.MyAdapter
 import com.example.onboardingandroid.apis.RetrofitHelper
 import com.example.onboardingandroid.apis.UserService
 import com.example.onboardingandroid.db.UserDatabase
+import com.example.onboardingandroid.repository.DefaultUserRepository
 import com.example.onboardingandroid.repository.UserRepository
 import com.example.onboardingandroid.viewmodel.userViewModel
 import com.example.onboardingandroid.viewmodel.userViewModelFactory
@@ -39,7 +40,7 @@ class ShowUserActivity : AppCompatActivity() {
 
         val service = RetrofitHelper.getInstance().create(UserService::class.java)
         val db = UserDatabase.getDatabase(this)
-        var repo = UserRepository(service,db,this)
+        var repo = DefaultUserRepository(service,db,this)
 
         vm = ViewModelProvider(this,userViewModelFactory(repo)).get(userViewModel::class.java)
 

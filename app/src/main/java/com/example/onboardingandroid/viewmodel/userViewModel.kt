@@ -4,12 +4,12 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.onboardingandroid.models.UserItem
-import com.example.onboardingandroid.repository.UserRepository
+import com.example.onboardingandroid.repository.DefaultUserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
-class userViewModel(private val repo:UserRepository):ViewModel()
+class userViewModel(private val repo:DefaultUserRepository):ViewModel()
 {
     init{
         viewModelScope.launch {

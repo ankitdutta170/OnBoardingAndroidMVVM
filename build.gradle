@@ -20,6 +20,11 @@ allprojects {
         jcenter()
     }
 }
+configurations.all {
+    resolutionStrategy {
+        force "androidx.test:monitor:${rootProject.androidxTestRunner}"
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
