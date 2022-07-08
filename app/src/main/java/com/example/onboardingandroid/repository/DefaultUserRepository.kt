@@ -77,13 +77,13 @@ class DefaultUserRepository(private val userService: UserService,private val use
         }
     }
 
-    override suspend fun getObservableLiveDataForUsers():LiveData<List<UserItem>> {
+    override fun getObservableLiveDataForUsers():LiveData<List<UserItem>> {
         return userDb.
                 userDao().observeAllUserItems()
     }
 
     val users: LiveData<List<UserItem>>
-        get() = userLiveDataForGetAll
+        get() = getObservableLiveDataForUsers()
 
 }
 

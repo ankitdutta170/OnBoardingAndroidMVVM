@@ -14,6 +14,7 @@ import com.example.onboardingandroid.apis.RetrofitHelper
 import com.example.onboardingandroid.apis.UserService
 import com.example.onboardingandroid.db.UserDatabase
 import com.example.onboardingandroid.models.UserItem
+import com.example.onboardingandroid.others.Constants
 import com.example.onboardingandroid.repository.DefaultUserRepository
 import com.example.onboardingandroid.viewmodel.userViewModel
 import com.example.onboardingandroid.viewmodel.userViewModelFactory
@@ -38,6 +39,9 @@ class MainActivity : AppCompatActivity() {
             else if(!isValidPhone(edit_phno.text.toString())){
                 Toast.makeText(this,"Enter valid phone",Toast.LENGTH_LONG).show()
             }
+            else if(!isValidName(edit_name.text.toString())){
+                Toast.makeText(this,"Enter valid name",Toast.LENGTH_LONG).show()
+            }
             else{
                 var user = UserItem(0,Integer.parseInt(edit_age.text.toString()),
                     edit_email.text.toString(),edit_name.text.toString(),edit_phno.text.toString().toLong())
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         btn_update.setOnClickListener {
             var user = UserItem(0,Integer.parseInt(edit_age.text.toString()),
                 edit_email.text.toString(),edit_name.text.toString(),edit_phno.text.toString().toLong())
-            vm.updateUser(edit_email.text.toString(),user)
+           // vm.updateUser(edit_email.text.toString(),user)
         }
         btn_delete.setOnClickListener {
             var email = edit_email.text.toString()
@@ -99,6 +103,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+    private fun isValidName(name:String):Boolean{
+        return !TextUtils.isEmpty(name) && name.length<=Constants.MAX_NAME_LENGTH
     }
     private fun isValidPhone(phone:String):Boolean{
         if(!Pattern.matches("^[0-9]$", phone)) {

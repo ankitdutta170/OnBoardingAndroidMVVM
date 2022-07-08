@@ -7,7 +7,8 @@ import com.example.onboardingandroid.models.UserItem
 interface UserRepository {
     suspend fun addUser(userItem: UserItem)
     suspend fun deleteUser(email:String)
-    suspend fun getObservableLiveDataForUsers():LiveData<List<UserItem>>
+     fun getObservableLiveDataForUsers():LiveData<List<UserItem>>
+
 
 
 }

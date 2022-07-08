@@ -29,7 +29,7 @@ class FakeUserRepository:UserRepository{
 
     }
 
-    override suspend fun getObservableLiveDataForUsers(): LiveData<List<UserItem>> {
+    override fun getObservableLiveDataForUsers(): LiveData<List<UserItem>> {
         return observableUserItems
     }
 
