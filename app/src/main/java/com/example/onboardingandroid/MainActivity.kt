@@ -33,20 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btn_add.setOnClickListener {
-            if(!isValidEmail(edit_email.text.toString())){
-                Toast.makeText(this,"Enter valid email",Toast.LENGTH_LONG).show()
-            }
-            else if(!isValidPhone(edit_phno.text.toString())){
-                Toast.makeText(this,"Enter valid phone",Toast.LENGTH_LONG).show()
-            }
-            else if(!isValidName(edit_name.text.toString())){
-                Toast.makeText(this,"Enter valid name",Toast.LENGTH_LONG).show()
-            }
-            else{
-                var user = UserItem(0,Integer.parseInt(edit_age.text.toString()),
-                    edit_email.text.toString(),edit_name.text.toString(),edit_phno.text.toString().toLong())
-                vm.addUser(user)
-            }
+            addUserItem()
 
            // Toast.makeText(this,"Add button clicked",Toast.LENGTH_LONG).show()
 
@@ -65,6 +52,23 @@ class MainActivity : AppCompatActivity() {
         btn_show.setOnClickListener {
             val intent = Intent(this,ShowUserActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun addUserItem() {
+        if(!isValidEmail(edit_email.text.toString())){
+            Toast.makeText(this,"Enter valid email",Toast.LENGTH_LONG).show()
+        }
+        else if(!isValidPhone(edit_phno.text.toString())){
+            Toast.makeText(this,"Enter valid phone",Toast.LENGTH_LONG).show()
+        }
+        else if(!isValidName(edit_name.text.toString())){
+            Toast.makeText(this,"Enter valid name",Toast.LENGTH_LONG).show()
+        }
+        else{
+            var user = UserItem(0,Integer.parseInt(edit_age.text.toString()),
+                edit_email.text.toString(),edit_name.text.toString(),edit_phno.text.toString().toLong())
+            vm.addUser(user)
         }
     }
 

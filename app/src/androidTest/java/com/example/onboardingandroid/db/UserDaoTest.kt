@@ -1,19 +1,19 @@
 package com.example.onboardingandroid.db
 
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+
 import com.example.onboardingandroid.getOrAwaitValue
 import com.example.onboardingandroid.models.UserItem
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
@@ -26,6 +26,7 @@ class UserDaoTest {
 
     private lateinit var database: UserDatabase
     private lateinit var dao:UserDao
+
 
     @Before
     fun setUp(){
@@ -62,6 +63,8 @@ class UserDaoTest {
         Truth.assertThat(allUserItems).doesNotContain(userItem)
 
     }
+
+
 
 
 
