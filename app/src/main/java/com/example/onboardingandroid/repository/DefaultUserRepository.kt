@@ -25,7 +25,7 @@ class DefaultUserRepository(private val userService: UserService,private val use
     fun getUserLiveDataForDelete():MutableLiveData<UserItem?>{
         return userLiveDataForDelete
     }
-     suspend fun getUsers(){
+    override suspend fun getUsers(){
         if(NetworkUtil.isConnected(con)){
             val results = userService.getUsers()
             if(results.body()!=null){
@@ -52,7 +52,7 @@ class DefaultUserRepository(private val userService: UserService,private val use
 
            }
     }
-    suspend fun updateUser(email:String,userItem: UserItem){
+    override suspend fun updateUser(email:String,userItem: UserItem){
         if(NetworkUtil.isConnected(con)) {
             val results = userService.updateUser(email,userItem)
             if(results.body()!=null){

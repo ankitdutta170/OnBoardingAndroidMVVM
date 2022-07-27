@@ -17,7 +17,11 @@ class userViewModel(private val repo: UserRepository):ViewModel()
 {
     init{
 
-            repo.getObservableLiveDataForUsers()
+           // repo.getObservableLiveDataForUsers()
+
+            viewModelScope.launch {
+                repo.getUsers()
+            }
 
     }
 
@@ -29,10 +33,10 @@ class userViewModel(private val repo: UserRepository):ViewModel()
         repo.addUser(userItem)
 
     }
-    /*fun updateUser(email:String,userItem: UserItem)=viewModelScope.launch(Dispatchers.IO){
+    fun updateUser(email:String,userItem: UserItem)=viewModelScope.launch(Dispatchers.IO){
         repo.updateUser(email,userItem)
 
-    }*/
+    }
     fun deleteUser(email: String)=viewModelScope.launch(Dispatchers.IO){
         repo.deleteUser(email)
 

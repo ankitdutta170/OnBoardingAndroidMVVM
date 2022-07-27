@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         btn_update.setOnClickListener {
             var user = UserItem(0,Integer.parseInt(edit_age.text.toString()),
                 edit_email.text.toString(),edit_name.text.toString(),edit_phno.text.toString().toLong())
-           // vm.updateUser(edit_email.text.toString(),user)
+           vm.updateUser(edit_email.text.toString(),user)
         }
         btn_delete.setOnClickListener {
             var email = edit_email.text.toString()

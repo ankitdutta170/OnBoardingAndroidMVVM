@@ -10,11 +10,13 @@ class ShowProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_show_profile)
 
         //val bundle:Bundle? = intent.extras
-        val name:String? = intent.getStringExtra("name")
-        val age:String? = intent.getStringExtra("age")
-        val phNo:String? = intent.getStringExtra("phNo")
-        val email:String? = intent.getStringExtra("email")
+        var name:String? = intent.getStringExtra("name")
+        var age:String? = intent.getStringExtra("age")
+        var phNo:String? = intent.getStringExtra("phNo")
+        var email:String? = intent.getStringExtra("email")
 
+
+        nameInTitleProfile.text = name
         name_InProfile.text = name
         age_InProfile.text = age
         ph_no_InProfile.text = phNo
